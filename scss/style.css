@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Staatliches&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #001220;
+  overflow-x: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header {
+  width: 100%;
+  min-height: 65vh;
+  background: linear-gradient(rgba(0, 18, 32, 0.4), rgba(0, 18, 32, 0.9)), url("../assets/JL2.jpg") no-repeat center top/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid #d90429;
+}
+.header .logo {
+  font-family: "Bebas Neue", cursive;
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  color: #edf2f4;
+  text-shadow: 4px 4px 0px #d90429;
+  letter-spacing: 4px;
+}
+.header .logo span {
+  font-family: "Staatliches", cursive;
+  color: #d90429;
+  text-shadow: none;
+}
+
+.search-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 15px;
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+}
+
+.search-container {
+  background-color: rgba(0, 18, 32, 0.98);
+  width: 100%;
+  max-width: 950px;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid rgba(217, 4, 41, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+}
+.search-container h2 {
+  font-family: "Bebas Neue", cursive;
+  color: #edf2f4;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+.search-container .search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+@media (min-width: 768px) {
+  .search-container .search-form {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+.search-container .input-group {
+  flex: 2;
+}
+.search-container .filters {
+  flex: 1;
+  display: flex;
+  gap: 10px;
+}
+@media (max-width: 480px) {
+  .search-container .filters {
+    flex-direction: column;
+  }
+}
+.search-container .input-search, .search-container .select-dark {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #002b5e;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.search-container .input-search:focus, .search-container .select-dark:focus {
+  outline: none;
+  border-color: #d90429;
+}
+.search-container .btn-search {
+  background-color: #d90429;
+  color: white;
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.2rem;
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.search-container .btn-search:hover {
+  background-color: rgb(250.6923076923, 21.3076923077, 61.1538461538);
+  transform: translateY(-2px);
+}/*# sourceMappingURL=style.css.map */

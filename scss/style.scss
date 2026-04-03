@@ -1,0 +1,136 @@
+// 1. Importar tus fuentes establecidas
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Staatliches&display=swap');
+
+// 2. Variables de Ada/DC
+$font-heroic: 'Bebas Neue', cursive;
+$font-accent: 'Staatliches', cursive; // Tu otra fuente elegida
+$font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+$blue-deep: #001220;
+$blue-bat: #002b5e;
+$justice-red: #d90429;
+$white-clean: #edf2f4;
+
+// 3. Limpieza de bordes (Reset total)
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $blue-deep;
+  overflow-x: hidden;
+  font-family: $font-body;
+}
+
+.header {
+  width: 100%;
+  min-height: 65vh; // Altura equilibrada
+  background: linear-gradient(rgba($blue-deep, 0.4), rgba($blue-deep, 0.9)), 
+              url('../assets/JL2.jpg') no-repeat center top / cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid $justice-red;
+
+  .logo {
+    font-family: $font-heroic; // Tu fuente principal
+    font-size: clamp(3.5rem, 12vw, 6rem); // Tamaño fluido para responsive
+    color: $white-clean;
+    text-shadow: 4px 4px 0px $justice-red;
+    letter-spacing: 4px;
+
+    span {
+      font-family: $font-accent; // Uso de tu segunda fuente
+      color: $justice-red;
+      text-shadow: none;
+    }
+  }
+}
+
+.search-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 15px;
+  margin-top: -50px; // El buscador pisa el header
+  position: relative;
+  z-index: 10;
+}
+
+.search-container {
+  background-color: rgba($blue-deep, 0.98);
+  width: 100%;
+  max-width: 950px;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid rgba($justice-red, 0.4);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+
+  h2 {
+    font-family: $font-heroic;
+    color: $white-clean;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+  }
+
+  .search-form {
+    display: flex;
+    flex-direction: column; // Por defecto en columna (Mobile)
+    gap: 15px;
+
+    @media (min-width: 768px) {
+      flex-direction: row; // Horizontal en Tablet/Desktop
+      align-items: flex-end;
+    }
+  }
+
+  .input-group {
+    flex: 2;
+  }
+
+  .filters {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    
+    // Para que los filtros se vean bien en celulares pequeños
+    @media (max-width: 480px) {
+      flex-direction: column;
+    }
+  }
+
+  .input-search, .select-dark {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid $blue-bat;
+    color: white;
+    font-family: $font-body;
+
+    &:focus {
+      outline: none;
+      border-color: $justice-red;
+    }
+  }
+
+  .btn-search {
+    background-color: $justice-red;
+    color: white;
+    font-family: $font-heroic;
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: lighten($justice-red, 10%);
+      transform: translateY(-2px);
+    }
+  }
+}
