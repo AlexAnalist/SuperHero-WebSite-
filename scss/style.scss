@@ -31,33 +31,60 @@ body {
 // 4. Header
 .header {
   width: 100%;
-  min-height: 65vh;
+  // Cambiamos min-height para que en móviles no sea tan invasivo
+  min-height: 50vh; 
+  
+  @media (min-width: 768px) {
+    min-height: 65vh; // En PC mantenemos tu altura original
+  }
+
+  // Fondo mejorado: 'fixed' le da un efecto de profundidad muy Batman
   background: linear-gradient(rgba($blue-deep, 0.4), rgba($blue-deep, 0.9)), 
-              url('../assets/JL2.jpg') no-repeat center top / cover;
+              url('../assets/JL2.jpg') no-repeat center center / cover;
+  background-attachment: scroll; // Cambiar a 'fixed' si quieres efecto parallax
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 40px 20px; // Aumentamos padding vertical para que respire
   text-align: center;
   border-bottom: 4px solid $justice-red;
+  position: relative;
+  overflow: hidden;
 
   .logo {
     font-family: $font-heroic;
+    // Tu uso de clamp es perfecto, lo mantenemos igual
     font-size: clamp(3.5rem, 12vw, 6rem);
     color: $white-clean;
     text-shadow: 4px 4px 0px $justice-red;
     letter-spacing: 4px;
+    line-height: 1.1; // Evita que las letras se corten en móviles
+    margin-bottom: 10px;
 
     span {
       font-family: $font-accent;
       color: $justice-red;
       text-shadow: none;
     }
+
+    // Ajuste fino para pantallas muy pequeñas
+    @media (max-width: 480px) {
+        letter-spacing: 2px;
+        text-shadow: 2px 2px 0px $justice-red;
+    }
   }
 
   .tagline {
-    color: $white-clean; 
+    color: $white-clean;
+    font-family: $font-body;
+    font-size: clamp(1rem, 4vw, 1.4rem); // Hacemos la tagline también fluida
+    max-width: 600px; // Evita que el texto sea demasiado largo en PC
+    margin: 0 auto;
+    opacity: 0.9;
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 }
 
@@ -84,117 +111,141 @@ body {
   h2 {
     font-family: $font-heroic;
     color: $white-clean;
-    margin-bottom: 15px;
-    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-size: 2rem;
   }
 
   .search-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 5px;
 
     @media (min-width: 768px) {
       flex-direction: row;
-      align-items: flex-end;
+      align-items: flex-end; // Mantiene la alineación base
     }
   }
 
   .input-group {
-    flex: 2;
+    flex: 3;
+    margin-top: 0;
+    // Mantenemos tu estilo de input original
+    .input-search {
+      width: 100%;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid $blue-bat;
+      color: white;
+      font-family: $font-body;
+      height: 48px; // Altura para match con el botón
+
+      &:focus {
+        outline: none;
+        border-color: $justice-red;
+      }
+    }
   }
 
- .filters {
+  // --- NUEVA ESTRUCTURA MANTENIENDO TUS ESTILOS ---
+  .search-controls {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    flex: 2;
+    gap: 10px;
+    align-items: flex-end; // Alinea el botón con la caja del select
 
-    label {
+    .filters {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+
+      label {
         font-family: $font-heroic;
         color: $white-clean;
-        font-size: 0.9rem;
+        font-size: 1.5rem;
         letter-spacing: 1px;
         text-transform: uppercase;
-    }
+      }
 
-    .select-dark {
+      .select-dark {
+        width: 100%;
+        height: 48px; // Igualamos al input y botón
         background-color: rgba($blue-deep, 0.9);
         color: $white-clean;
         border: 1px solid $blue-bat;
         padding: 10px 15px;
         font-family: $font-body;
         cursor: pointer;
-        outline: none;
-        transition: all 0.3s ease;
-        appearance: none; // Quita el estilo por defecto del navegador
-        
-        // Icono de flecha personalizado (opcional)
+        appearance: none;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 20px;
 
         &:hover, &:focus {
-            border-color: $accent-blue;
-            box-shadow: 0 0 10px rgba($accent-blue, 0.3);
+          border-color: $accent-blue;
+          box-shadow: 0 0 10px rgba($accent-blue, 0.3);
         }
 
         option {
-            background-color: $blue-deep;
-            color: $white-clean;
+          background-color: $blue-deep;
+          color: $white-clean;
         }
+      }
     }
+
+    .btn-search {
+      flex: 1;
+      height: 48px; // Altura exacta para simetría
+      background-color: $justice-red;
+      color: white;
+      font-family: $font-heroic;
+      font-size: 1.2rem;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      white-space: nowrap; // Evita que el texto se amontone
+
+      &:hover {
+        background-color: lighten($justice-red, 10%);
+        transform: translateY(-2px);
+      }
+    }
+  }
 }
-  .input-search, .select-dark {
-    width: 100%;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid $blue-bat;
-    color: white;
-    font-family: $font-body;
-
-    &:focus {
-      outline: none;
-      border-color: $justice-red;
-    }
-  }
-
-  .btn-search {
-    background-color: $justice-red;
-    color: white;
-    font-family: $font-heroic;
-    font-size: 1.2rem;
-    padding: 12px 30px;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
-
-    &:hover {
-      background-color: lighten($justice-red, 10%);
-      transform: translateY(-2px);
-    }
-  }
-} // Aquí cerramos correctamente el contenedor de búsqueda
 
 // 6. Sección de Resultados
 .results-section {
   padding: 20px;
-  background-color: lighten($bg-dark, 2%);
-  border: 1px solid $border-color;
+  // CAMBIO: Fondo azul profundo traslúcido (como el buscador)
+  background-color: rgba($blue-deep, 0.85); 
+  backdrop-filter: blur(4px); // Efecto cristal tecnológico
+  
+  // CAMBIO: Borde azul eléctrico con brillo
+  border: 1px solid $accent-blue;
+  box-shadow: 0 0 20px rgba($accent-blue, 0.2); 
+  margin-left: 20px;   // Espacio a la izquierda
+  margin-right: 20px;
   margin-top: 20px;
+  border-radius: 8px; // Para que combine con el buscador
 
   .results-header {
     border-bottom: 2px solid $accent-blue;
     margin-bottom: 20px;
+    padding-bottom: 10px;
     
     h3 {
       color: $white-clean;
       font-size: 1.2rem;
       letter-spacing: 2px;
-      margin-bottom: 10px;
+      margin: 0;
+      font-family: $font-heroic; // Aseguramos tipografía de héroe
       
       #total-count {
         color: $accent-blue;
         font-weight: bold;
+        margin-left: 5px;
+        text-shadow: 0 0 10px rgba($accent-blue, 0.5); // Brillo en el número
       }
     }
   }
@@ -205,6 +256,7 @@ body {
     gap: 20px;
     min-height: 200px;
 
+    // --- MANTENIDO TAL CUAL ---
     .mini-card {
       background: rgba($blue-bat, 0.3);
       border: 1px solid $border-color;
@@ -220,7 +272,7 @@ body {
       img {
         width: 100%;
         height: 250px;
-        object-fit: cover; // Requisito de imagen [cite: 24]
+        object-fit: cover;
       }
 
       h4 {
