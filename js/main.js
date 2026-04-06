@@ -4,8 +4,7 @@
  */
 
 // --- 1. CONFIGURACIÓN Y VARIABLES ---
-const API_TOKEN = "40e6fee2adb72187fe72fb59159e1420"; //token adquirido
-const BASE_URL = `https://superheroapi.com/api.php/${API_TOKEN}`;
+const BASE_URL = `https://akabab.github.io/superhero-api/api/all.json`;
 
 let currentPage = 1;  //Página actual en la que se encuentra el usuario
 const heroesPerPage = 18; // Cantidad de cards que se muestran por página (se dejo 18 en vez de 20 para que se mantuviera la armónia tanto en desktop como movil y ello solo sucede con multiples de 3)
