@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WayneTech | SuperHero Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./scss/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">Ale<span>COMICS</span></h1>
+            <p class="tagline">BASE DE DATOS DE LA JUSTICIA</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <div class="search-container">
+                <h2>Búsqueda de Personajes</h2>
+                <form id="search-form" class="search-form">
+                    <div class="input-group">
+                        <input type="text" id="search-input" class="input-search" placeholder="Buscar personaje...">
+                    </div>
+
+                    <div class="search-controls">
+                        <div class="filters">
+                            <label for="sort-select">ORDEN</label>
+                            <select id="sort-select" class="select-dark">
+                                <option value="az">A - Z</option>
+                                <option value="za">Z - A</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-search">EJECUTAR BÚSQUEDA</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="main-view" class="results-section">
+            <div class="results-header">
+                <h3>RESULTADOS: <span id="total-count">0</span></h3>
+            </div>
+            <div id="results-grid" class="results-grid"></div>
+            
+            <div class="pagination-container">
+                <div class="pagination">
+                    <button id="btn-first" class="btn-pag">&laquo;</button>
+                    <button id="btn-prev" class="btn-pag">&lt;</button>
+                    <span id="page-current" class="page-current">PÁGINA 1</span>
+                    <button id="btn-next" class="btn-pag">&gt;</button>
+                    <button id="btn-last" class="btn-pag">&raquo;</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="detail-view" class="detail-section" style="display: none;">
+            <button id="back-to-results">VOLVER A LA BÚSQUEDA</button>
+            <div id="character-detail-content"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Wayne Enterprises - ADA Front End Project</p>
+    </footer>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
